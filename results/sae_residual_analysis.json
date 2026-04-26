@@ -1,0 +1,15 @@
+{
+  "reconstruction_error_mean_l2": 8.190606117248535,
+  "relative_error": 0.7045267224311829,
+  "proj_caa": {
+    "rho_original": -0.05875110194521867,
+    "rho_reconstructed": -0.06304390047491219,
+    "rho_residual": -0.05564740960645029
+  },
+  "proj_probe": {
+    "rho_original": 0.684362912466355,
+    "rho_reconstructed": 0.21161055207139182,
+    "rho_residual": 0.6956782585909461
+  },
+  "variance_pct_residual": 86.81434701942557
+}
