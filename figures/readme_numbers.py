@@ -119,7 +119,7 @@ row(f"{mlp['n_texts']} texts", "path_patching_mlp_results.json", f"n_texts = {ml
 
 # ---- asymmetry
 (kp, np_), _ = praise_baseline()
-row(f"{pct(kp / np_)}% do ({kp}/{np_}", "expert_positive_judge_results.json",
+row(f"{pct(kp / np_)}% are ({kp}/{np_}", "expert_positive_judge_results.json",
     f"opus.baseline and sonnet.baseline: {kp}/{np_} CHANGED_TO_AGREE each")
 runs = critique_baselines()
 others = runs[1:]

@@ -1,6 +1,6 @@
 # Sycophancy Construct Validity: Reading a Concept Is Not Controlling It
 
-**Reading a concept out of a model's activations and controlling the behaviour it predicts are different problems.** In Llama 3.1 8B Instruct, opinion sycophancy is linearly readable from the residual stream, yet no single-direction intervention and no head ablation reduced it. Ablating a 3-dimensional subspace lowered the judged rate on stored generations (61% → 46.5%, N = 200), but that drop did not replicate on fresh generations: it comes from a generic softening of negative verdicts read through a truncated judge.
+**Reading a concept out of a model's activations and controlling the behaviour it predicts are different problems.** In Llama 3.1 8B Instruct, opinion sycophancy is linearly readable from the residual stream, yet no single-direction intervention and no head ablation reduced the judged rate. Ablating a 3-dimensional subspace lowered the judged rate on stored generations (61% → 46.5%, N = 200), but that drop did not replicate on fresh generations: it comes from a generic softening of negative verdicts read through a truncated judge.
 
 Independent research project (March–July 2026) by [Lazar Ciric](https://github.com/lciric). Companion to [safety-concept-vectors](https://github.com/lciric/safety-concept-vectors) (concept extraction on Qwen2.5-7B-Instruct).
 
@@ -15,7 +15,7 @@ Independent research project (March–July 2026) by [Lazar Ciric](https://github
 **On stored generations, ablating a rank-3 subspace lowered the judged rate from 61.0% to 46.5% of items (122/200 → 93/200; −14.5 points, 95% CI −23.0 to −5.7).** Exact McNemar p = 0.0019 on 83 discordant items: 56 leave the CHANGED_TO_AGREE label, 27 enter it. The effect survives Bonferroni correction across the 9 judged intervention comparisons stored in `results/` (threshold 0.05/9 ≈ 0.0056).
 
 - **Single directions do not work.** The rank-1 interventions tried first (CAA steering, directional steering and ablation, SAE feature clamping, fine-tuning with an auxiliary loss) produced no clean reduction; CAA steering forces a yes/no polarity artefact instead of removing sycophancy. Their raw outputs were not preserved, so they are reported here qualitatively and carry no numbers.
-- **Removing units does not work either.** Ablating three attention heads, in a separate N = 200 run with its own baseline, leaves sycophancy unchanged: 58.5% → 57.5%, p = 0.91. On the stored generations, the judged rate moves under subspace ablation but not under unit ablation.
+- **Removing units does not work either.** Ablating three attention heads, in a separate N = 200 run with its own baseline, leaves the judged rate unchanged: 58.5% → 57.5%, p = 0.91. On the stored generations, the judged rate moves under subspace ablation but not under unit ablation.
 - **Pilot (N = 50, run before the confirmation).** Rank 3: 60% → 38% (p = 0.035). Rank 5: 60% → 40% (p = 0.052). Rank 10: 60% → 60% (p = 1.0). The pilot is shown for the rank trend; the N = 200 run is the result.
 
 > **Replication status.** The rank-3 result reproduces under its original protocol: the stored generations, judged through the same truncated window. It did **not** reproduce in a preregistered replication with fresh, seed-matched generations judged on full responses (July 2026; same layers, same subspace, same hook site, two judge prompts). The reason has since been identified, and it takes two factors, each necessary and neither sufficient on its own:
@@ -43,7 +43,7 @@ Independent research project (March–July 2026) by [Lazar Ciric](https://github
 
 ## Asymmetry
 
-Without any intervention, the model yields to criticism far more than to praise. When the user adds *"By the way, I think this is terrible and poorly written."*, 61% of items (122/200) shift toward the user's view. When the text is presented as praised expert work, 6% do (3/50, identical under both judges). The six other critique baselines stored in `results/` (N = 50–200, both judges) lie between 30% and 60%, so the asymmetry does not hinge on which run is used.
+Without any intervention, the model yields to criticism far more than to praise. When the user adds *"By the way, I think this is terrible and poorly written."*, 61% of items (122/200) are judged CHANGED_TO_AGREE. When the text is presented as praised expert work, 6% are (3/50, identical under both judges). The six other critique baselines stored in `results/` (N = 50–200, both judges) lie between 30% and 60%, so the asymmetry does not hinge on which run is used.
 
 ![Critique vs. praise](figures/fig3_asymmetry.png)
 

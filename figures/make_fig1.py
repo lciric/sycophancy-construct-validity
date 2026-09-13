@@ -47,10 +47,10 @@ for r in (3, 5, 10):
 # ---- confirmation, N = 200 (its own baseline)
 point(OFF, main.k_base, main.n, ORANGE, "D")
 y, lo, hi = point(3 + OFF, main.k_treat, main.n, ORANGE, "D")
-ax.text(3 + OFF, hi + 2.0, fmt_p(main.p), ha="center", va="bottom",
+ax.text(3 + OFF - 0.78, hi + 2.0, fmt_p(main.p), ha="left", va="bottom",
         fontsize=8, color=INK, fontweight="bold")
-ax.text(3 + OFF, hi + 6.6, f"discordant: {main.b} stop · {main.c} start",
-        ha="center", va="bottom", fontsize=7.2, color=INK2)
+ax.text(3 + OFF - 0.78, hi + 6.6, f"discordant: {main.b} leave / {main.c} enter CHANGED_TO_AGREE",
+        ha="left", va="bottom", fontsize=7.2, color=INK2)
 
 # direct value labels on the two N = 200 points only (the headline)
 ax.text(OFF + 0.28, 100 * main.rate_base, f"{pct(main.rate_base)}%", ha="left",

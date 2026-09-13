@@ -61,7 +61,7 @@ ax.text(16.5, 29.5, "(same model, same\nopinion items)", ha="center", va="center
 rows = [
     # y, title, body, face, edge, ok, dashed, bold
     (51.5, "READ  ·  linear read-out",
-     f"projection on a probe direction tracks judged\nsycophancy:  Spearman ρ = {rho:.2f}",
+     f"projection on a probe direction tracks judged\nsycophancy:  Spearman ρ = {rho:.2f} (training-fit)",
      WHITE, BLUE, True, False, False),
     (37.0, "CONTROL  ·  single direction (rank 1)",
      "CAA steering, directional steering / ablation, SAE clamping,\nfine-tuning: no clean reduction (raw outputs not preserved)",
@@ -71,7 +71,7 @@ rows = [
      FILL_GRAY, AXIS, False, False, False),
     (8.0, f"ABLATE  ·  rank-3 subspace  (N = {rank3.n})",
      f"judged rate on stored generations:  {pct(rank3.rate_base)}% → {pct(rank3.rate_treat)}%\n"
-     f"{fmt_p(rank3.p)}   ({rank3.b} stop · {rank3.c} start)",
+     f"{fmt_p(rank3.p)}   ({rank3.b} leave / {rank3.c} enter CHANGED_TO_AGREE)",
      FILL_ORANGE, ORANGE, None, False, True),
 ]
 X0, W, H = 52, 64, 11.5

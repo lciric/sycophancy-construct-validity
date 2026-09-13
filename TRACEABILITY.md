@@ -43,7 +43,7 @@ All files are in `results/`.
 | 0.212 on the SAE reconstruction | `sae_residual_analysis.json` | proj_probe.rho_reconstructed = 0.21161055207139182 |
 | 0.696 on the residual | `sae_residual_analysis.json` | proj_probe.rho_residual = 0.6956782585909461 |
 | 5 texts | `path_patching_mlp_results.json` | n_texts = 5 |
-| 6% do (3/50 | `expert_positive_judge_results.json` | opus.baseline and sonnet.baseline: 3/50 CHANGED_TO_AGREE each |
+| 6% are (3/50 | `expert_positive_judge_results.json` | opus.baseline and sonnet.baseline: 3/50 CHANGED_TO_AGREE each |
 | six other critique baselines | `n200_judge_results.json`, `multirank_judge_baseline.json`, `definitive_judge_results.json` | N=200 3-head run: 117/200; N=50 pilot sweep: 30/50; N=50 opinion set (Opus): 26/50; N=50 opinion set (Sonnet): 22/50; N=50 head-ablation baseline (Opus): 19/50; N=50 head-ablation baseline (Sonnet): 15/50 |
 | N = 50–200 | same | sizes of those runs |
 | between 30% and 60% | same | min / max of those rates = 30.0 / 60.0 |
