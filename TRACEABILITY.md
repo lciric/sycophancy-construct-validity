@@ -90,7 +90,7 @@ Values are deliberately not repeated here.
 | A small "SAE reconstructs x% of variance" figure | Corrected: 86.8% of the variance is left in the residual (`variance_pct_residual`). |
 | Maximum pairwise cosine between extraction methods | Removed: no numeric matrix survives. |
 | The N = 50 pilot presented as the main result | Replaced by the N = 200 run, consolidated into `results/`. |
-| "Rank-1 control, best p = 0.91" | Re-labelled: p = 0.91 belongs to the 3-head ablation (N = 200), not to a rank-1 intervention. |
+| A p-value presented as the best rank-1 control | Re-labelled: that p-value belongs to the 3-head ablation (N = 200); no rank-1 p-value is stored in `results/`. |
 | Pilot ranks 1, 2 and 4 | Invalidated: baseline and ablated responses were generated on different item orders. Not reported. |
 
 ## Other notes

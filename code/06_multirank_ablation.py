@@ -8,10 +8,13 @@ Standalone export of the Colab rank sweep; not byte-for-byte the executed code.
 Results: see the README and TRACEABILITY.md, which trace every value to
 results/. The pilot sweep (N=50, judged by claude-opus-4-6 at temperature 0)
 and the N=200 rank-3 run measure changes in the *judged* sycophancy rate on
-*stored* generations. They did not replicate on fresh generations; the README
-("Replication status") gives the identified reason, and the rank-3 subspace is
-not a causal handle on sycophancy. Rank-1 interventions are reported
-qualitatively in the README; their raw outputs were not preserved.
+*stored* generations. They did not replicate on fresh generations. The
+ablation causes a generic shift, confirmed by the zero-pressure arm: it softens
+negative verdicts even when the user applies no pressure, and the truncated
+judging window reads that softening as the model holding its position (README,
+"Replication status"). The rank-3 subspace is therefore not a causal handle on
+sycophancy. Rank-1 interventions are reported qualitatively in the README;
+their raw outputs were not preserved.
 """
 
 import torch
