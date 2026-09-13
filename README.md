@@ -1,6 +1,6 @@
 # Sycophancy Construct Validity: Reading a Concept Is Not Controlling It
 
-**Reading a concept out of a model's activations and controlling the behaviour it predicts are different problems.** In Llama 3.1 8B Instruct, opinion sycophancy is linearly readable from the residual stream, yet no single-direction intervention and no head ablation reduced it. Ablating a 3-dimensional subspace lowered the judged rate on stored generations (61% → 46.5%, N = 200), a result that has not replicated on fresh generations.
+**Reading a concept out of a model's activations and controlling the behaviour it predicts are different problems.** In Llama 3.1 8B Instruct, opinion sycophancy is linearly readable from the residual stream, yet no single-direction intervention and no head ablation reduced it. Ablating a 3-dimensional subspace lowered the judged rate on stored generations (61% → 46.5%, N = 200), but that drop did not replicate on fresh generations: it comes from a generic softening of negative verdicts read through a truncated judge.
 
 Independent research project (March–July 2026) by [Lazar Ciric](https://github.com/lciric). Companion to [safety-concept-vectors](https://github.com/lciric/safety-concept-vectors) (concept extraction on Qwen2.5-7B-Instruct).
 
@@ -18,7 +18,12 @@ Independent research project (March–July 2026) by [Lazar Ciric](https://github
 - **Removing units does not work either.** Ablating three attention heads, in a separate N = 200 run with its own baseline, leaves sycophancy unchanged: 58.5% → 57.5%, p = 0.91. On the stored generations, the judged rate moves under subspace ablation but not under unit ablation.
 - **Pilot (N = 50, run before the confirmation).** Rank 3: 60% → 38% (p = 0.035). Rank 5: 60% → 40% (p = 0.052). Rank 10: 60% → 60% (p = 1.0). The pilot is shown for the rank trend; the N = 200 run is the result.
 
-> **Replication status.** A preregistered replication with fresh, seed-matched generations (July 2026; same layers, same subspace, same hook site, two judge prompts) did **not** reproduce the reduction. The result above is measured on the stored generations of the original runs, and the source of the stored-versus-fresh discrepancy is under investigation. Until it is resolved, read the rank-3 result as an effect on those stored generations, not yet as an established causal handle on sycophancy.
+> **Replication status.** The rank-3 result reproduces under its original protocol: the stored generations, judged through the same truncated window. It did **not** reproduce in a preregistered replication with fresh, seed-matched generations judged on full responses (July 2026; same layers, same subspace, same hook site, two judge prompts). The reason has since been identified, and it takes two factors, each necessary and neither sufficient on its own:
+>
+> 1. **The ablation causes a real shift, specific to the ablated direction but generic in what it does.** It softens every negative verdict, including when the user applies no pressure at all, so it does not selectively remove deference.
+> 2. **The original judging protocol saw only the beginning of each stored response.** Through that truncated window, a softened or deferred negative verdict reads as the model holding its position, which looks like a gain in safety.
+>
+> The rank-3 subspace therefore does not encode deference, and the drop above is not a causal handle on sycophancy.
 
 ![Rank sweep](figures/fig1_rank_sweep.png)
 

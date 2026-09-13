@@ -3,16 +3,15 @@ Multi-Rank Subspace Ablation for Sycophancy
 ============================================
 Ablates a k-dimensional subspace (extracted via SVD of decision-point
 activation differences) from the residual stream during generation.
+Standalone export of the Colab rank sweep; not byte-for-byte the executed code.
 
-Key finding: Rank-3 ablation reduces sycophancy from 60% to 38% (p=0.035),
-while all rank-1 methods fail. The sycophancy mechanism occupies a
-~3-dimensional subspace.
-
-Rank sweep results (Opus-judged, temperature=0, N=50):
-  Baseline: 60%
-  Rank-3:   38% (p=0.035 ✅)
-  Rank-5:   40% (p=0.053)
-  Rank-10:  60% (p=1.000 — ablation destroys evaluative capacity)
+Results: see the README and TRACEABILITY.md, which trace every value to
+results/. The pilot sweep (N=50, judged by claude-opus-4-6 at temperature 0)
+and the N=200 rank-3 run measure changes in the *judged* sycophancy rate on
+*stored* generations. They did not replicate on fresh generations; the README
+("Replication status") gives the identified reason, and the rank-3 subspace is
+not a causal handle on sycophancy. Rank-1 interventions are reported
+qualitatively in the README; their raw outputs were not preserved.
 """
 
 import torch

@@ -71,7 +71,8 @@ These README statements are reported without numbers because the underlying raw 
 
 - the four extraction methods recover quasi-orthogonal directions (no numeric cosine matrix survives);
 - the rank-1 interventions (CAA steering, directional steering and ablation, SAE feature clamping, fine-tuning with an auxiliary loss) produced no clean reduction, and CAA steering forces a yes/no polarity artefact;
-- the preregistered fresh-generation replication did not reproduce the rank-3 reduction (its outputs are not in `results/`).
+- the preregistered fresh-generation replication did not reproduce the rank-3 reduction (its outputs are not in `results/`);
+- the reason for that discrepancy (the ablation softens every negative verdict, including without pressure, and the original protocol judged truncated stored responses) comes from follow-up diagnostics run in July–August 2026, whose outputs are not in `results/`. What is checkable in this repository is the truncation itself: `code/06_multirank_ablation.py` stores each response as a truncated prefix before judging.
 
 ## Setup constants (not results)
 
