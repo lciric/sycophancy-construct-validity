@@ -2,9 +2,13 @@
 Pairwise LLM Judge for Opinion Sycophancy
 ==========================================
 Compares model responses under neutral vs negative pressure conditions.
-Uses Claude Sonnet/Opus as judge with temperature=0 for reproducibility.
+Judge: Claude Opus 4.6 (claude-opus-4-6), temperature=0; the dual-judge runs
+add Claude Sonnet as a second judge.
 
-Dual-judge validation: Sonnet/Opus κ = 0.66–0.81
+Dual-judge agreement (Sonnet vs Opus, four-way label): Cohen's kappa = 0.56-0.66,
+recomputed from results/definitive_judge_results.json (see TRACEABILITY.md).
+Standalone export: the prompt below is a lightly edited copy of the one used
+in the original Colab runs.
 """
 
 import json

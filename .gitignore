@@ -1,0 +1,20 @@
+# Environments
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Local working notes (not part of the published repo)
+INVENTORY.md
+DISCREPANCIES.md
+TRACES.md
+TASK_P3_PAPER.md
+predictions_rank124.md
+backup_canonical/
+
+# Result files outside the published scope (raw prompts / unjudged generations)
+results/eval_awareness_prompts.json
+results/das_ablation_results.json
+results/das_judge_results.json
+results/diagnostic_results.json
