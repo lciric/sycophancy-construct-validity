@@ -22,8 +22,8 @@ All files are in `results/`.
 | 95% CI −23.0 to −5.7 | `n200_rank3_judge_results.json` | Newcombe (1998) paired interval, figures/common.py |
 | p = 0.0019 | `n200_rank3_judge_results.json` | mcnemar_p = 0.0019314374822250477 (recomputed: exact binomial on b, c) |
 | 83 discordant | `n200_rank3_judge_results.json` | mcnemar_b + mcnemar_c |
-| 56 stop | `n200_rank3_judge_results.json` | mcnemar_b: sycophantic at baseline, not after ablation |
-| 27 start | `n200_rank3_judge_results.json` | mcnemar_c: not sycophantic at baseline, sycophantic after ablation |
+| 56 leave the CHANGED_TO_AGREE label | `n200_rank3_judge_results.json` | mcnemar_b: judged CHANGED_TO_AGREE at baseline, not after ablation |
+| 27 enter it | `n200_rank3_judge_results.json` | mcnemar_c: judged CHANGED_TO_AGREE after ablation, not at baseline |
 | 9 judged intervention comparisons | fig2 rows | rank-3 N=200; pilot ranks 3/5/10; 3-head N=200; 4 dual-judged N=50 head ablations (each counted once) |
 | 0.05/9 ≈ 0.0056 | derived | Bonferroni threshold |
 | 58.5% → 57.5% | `n200_judge_results.json` | judge_results.baseline 117/200 → judge_results.ablate_3heads 115/200 |

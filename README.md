@@ -12,7 +12,7 @@ Independent research project (March–July 2026) by [Lazar Ciric](https://github
 
 ## Headline result
 
-**On stored generations, ablating a rank-3 subspace lowered the judged sycophancy rate from 61.0% to 46.5% of items (122/200 → 93/200; −14.5 points, 95% CI −23.0 to −5.7).** Exact McNemar p = 0.0019 on 83 discordant items: 56 stop being sycophantic, 27 start. The effect survives Bonferroni correction across the 9 judged intervention comparisons stored in `results/` (threshold 0.05/9 ≈ 0.0056).
+**On stored generations, ablating a rank-3 subspace lowered the judged rate from 61.0% to 46.5% of items (122/200 → 93/200; −14.5 points, 95% CI −23.0 to −5.7).** Exact McNemar p = 0.0019 on 83 discordant items: 56 leave the CHANGED_TO_AGREE label, 27 enter it. The effect survives Bonferroni correction across the 9 judged intervention comparisons stored in `results/` (threshold 0.05/9 ≈ 0.0056).
 
 - **Single directions do not work.** The rank-1 interventions tried first (CAA steering, directional steering and ablation, SAE feature clamping, fine-tuning with an auxiliary loss) produced no clean reduction; CAA steering forces a yes/no polarity artefact instead of removing sycophancy. Their raw outputs were not preserved, so they are reported here qualitatively and carry no numbers.
 - **Removing units does not work either.** Ablating three attention heads, in a separate N = 200 run with its own baseline, leaves sycophancy unchanged: 58.5% → 57.5%, p = 0.91. On the stored generations, the judged rate moves under subspace ablation but not under unit ablation.
@@ -35,7 +35,7 @@ Independent research project (March–July 2026) by [Lazar Ciric](https://github
 
 - **Four extraction methods, four directions.** CAA, contrastive stories (mean difference), Ridge regression on judged behaviour and SAE feature decomposition recover quasi-orthogonal "sycophancy" directions. This is a qualitative statement: the numeric cosine matrix was not preserved, so no value is given.
 - **Where it is read is not where it is caused.** The 20 attention heads most aligned with the CAA direction (projection analysis; layers 8–16 and 30–31) and the 20 heads with the largest path-patching effect (layers 0–9) have zero overlap.
-- **The read-out signal lives outside the SAE.** The open-source Goodfire SAE for Llama 3.1 8B Instruct leaves 86.8% of activation variance in its reconstruction residual (relative L2 error 0.70). The signal is carried by that residual: the projection–behaviour correlation is ρ = 0.684 on raw activations, 0.212 on the SAE reconstruction and 0.696 on the residual.
+- **The read-out signal lives outside the SAE.** The open-source Goodfire SAE for Llama 3.1 8B Instruct leaves 86.8% of activation variance in its reconstruction residual (relative L2 error 0.70). The signal is carried by that residual: the projection–behaviour correlation is ρ = 0.684 on raw activations, 0.212 on the SAE reconstruction and 0.696 on the residual. These correlations carry the same reservation as the probe accuracy: `sae_residual_analysis.json` does not establish that the scored items were excluded from the probe's training, so treat them as training fit.
 
 ![SAE residual](figures/fig4_sae_residual.png)
 
@@ -80,7 +80,7 @@ Every figure is computed at run time from the per-item judgments in `results/` (
 - **One model.** Llama 3.1 8B Instruct only.
 - **Opinion sycophancy only.** Single-turn evaluation of a text under social pressure; factual, multi-turn and moral sycophancy are not tested.
 - **Extraction–evaluation circularity.** The subspace is extracted from critique-vs-neutral differences on items from the same pool later used to evaluate the ablation; extraction on a disjoint item set is needed.
-- **Probe metrics were training-fit and are deliberately not reported.** The raw file behind them is not in this repository. The read-out claim rests on the projection–behaviour correlation (ρ = 0.684) in `sae_residual_analysis.json`.
+- **Probe metrics were training-fit and are deliberately not reported.** The raw file behind them is not in this repository. The read-out claim rests on the projection–behaviour correlation (ρ = 0.684) in `sae_residual_analysis.json`, which carries the same reservation: that file does not establish that the scored items were excluded from the probe's training, so ρ may also be training fit.
 - **Not all ranks of the sweep are preserved.** Ranks 1–2, 4 and 6–9 have no valid result file in `results/`. The original pilot files for ranks 1, 2 and 4 were invalidated during the audit: their baseline and ablated responses came from different item orders.
 - **Rank-1 interventions are reported qualitatively**, since their raw outputs were not preserved.
 - **The open-source SAE is lossy.** With 86.8% of variance left in the residual, "SAE features cannot control sycophancy" does not separate *the causal features are absent from the dictionary* from *the SAE is too lossy to expose them*.
